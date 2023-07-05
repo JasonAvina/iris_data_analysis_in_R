@@ -1,0 +1,31 @@
+#this code is taken from: https://rpubs.com/Aakansha_garg/261616 and is not my own
+#I am only including code that I have run and understood. 
+
+library("caret")
+
+#load the dataset
+data(iris)
+dataset<-iris
+
+#split data into training and test data
+test_index <- createDataPartition(dataset$Species, p=0.80, list=FLASE)
+training_data <- dataset[test_index,]
+test_data <- dataset[-test_index,]
+
+#inspect the data
+dim(dataset)
+sapply(dataset, class)
+head(dataset)
+
+#look at labels("levels" in R)
+levels(dataset$Species)
+
+#look at number of examples/rows labelled by each class
+percentage <- prop.table(table(dataset$Species)) * 100
+cbind(freq=table(dataset$Species), percentage=percentage)
+summary(dataset)
+
+#data visualization of each feature
+x<-dataset[1:4]
+y<-dataset[5]
+
